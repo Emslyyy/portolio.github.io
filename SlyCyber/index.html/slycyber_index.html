@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to SlyCyber.com - Follow my cybersecurity journey through hands-on labs, projects, and skill development. Showcasing practical experience and continuous learning in the field of cybersecurity.">
+    <meta name="keywords" content="cybersecurity, portfolio, network security, SOC, cloud security, penetration testing, security analysis">
+    <meta name="author" content="SlyCyber">
+    <meta name="robots" content="index, follow">
+    
+    <title>SlyCyber.com - Cybersecurity Portfolio</title>
+    
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #0a192f;
+            --secondary-dark: #112240;
+            --highlight-blue: #64ffda;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 25, 47, 0.95);
+            padding: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--highlight-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--highlight-blue);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+        }
+
+        section {
+            min-height: 60vh;
+            padding: 2rem 1rem 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin: 2rem 0;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 0.5rem;
+            padding: 1rem;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image {
+            max-width: 80%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--highlight-blue);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            color: var(--text-secondary);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: transparent;
+            border: 2px solid var(--highlight-blue);
+            color: var(--highlight-blue);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--highlight-blue);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--secondary-dark);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-color: #1a365d;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* Certifications Section */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            background-color: var(--secondary-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+        }
+
+        .cert-image {
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--highlight-blue);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            color: var(--highlight-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background-color: var(--secondary-dark);
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            border-color: var(--highlight-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--highlight-blue);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--secondary-dark);
+            border: 1px solid var(--text-secondary);
+            border-radius: 4px;
+            color: var(--text-primary);
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--highlight-blue);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--highlight-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-dark);
+            color: var(--text-secondary);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        footer .social-links {
+            margin-top: 1rem;
+        }
+
+        footer .social-links a {
+            margin: 0 0.5rem;
+            color: var(--highlight-blue);
+            transition: color 0.3s;
+        }
+
+        footer .social-links a:hover {
+            color: white;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-dark);
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .profile-image {
+                max-width: 80%;
+            }
+        }
+
+        /* Theme Switcher */
+        .theme-switch {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary-dark);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border: none;
+            color: var(--text-primary);
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: relative;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--secondary-dark);
+            opacity: 0.7;
+        }
+
+        .loading::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--highlight-blue);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .linkedin-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #0077b5; /* LinkedIn blue */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .linkedin-button:hover {
+            background-color: #005582; /* Darker shade on hover */
+        }
+
+        .resume-button-container {
+            text-align: center; /* Center the content inside the container */
+            margin-top: 1rem; /* Optional: Add some space above the button */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo" aria-label="SlyCyber Logo">SlyCyber</div>
+            <button class="hamburger" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" role="navigation" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="container hero">
+            <div class="hero-content">
+                <h1>Welcome to My<br>Cybersecurity Journey</h1>
+                <p>This e-portfolio showcases my hands-on labs and projects as I build my skills in cybersecurity. It's a space where I document some of what I've learned and share my progress. Whether you're a fellow professional or a recruiter, I hope you'll find value in my work.</p>
+                <a href="#projects" class="cta-button">View My Projects</a>
+            </div>
+            <div class="hero-image">
+                <img src="/Users/slys/Documents/SlyCyber/content/image.png" 
+                     alt="Profile Image" 
+                     class="profile-image">
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects & Labs</h2>
+            <p class="section-subtitle">Documenting my hands-on experience and learning journey</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/Users/slys/Documents/SlyCyber/content/project1.png" alt="Project Screenshot">
+                    </div>
+                    <h3>Network Security Analysis</h3>
+                    <p>Implementing a comprehensive network monitoring solution using Wireshark and Splunk for threat detection and analysis.</p>
+                    <p><strong>Tools Used:</strong> Wireshark, Splunk, Python</p>
+                    <a href="../project/project1.html" class="cta-button">View Details</a>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <h3>Cloud Security Lab</h3>
+                    <p>Setting up and securing a cloud environment with focus on identity management and access controls in Azure.</p>
+                    <p><strong>Tools Used:</strong> Azure, PowerShell</p>
+                    <a href="#" class="cta-button">View Details</a>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <h3>SOC Automation Project</h3>
+                    <p>Building automated incident response workflows to enhance SOC efficiency and reduce response times.</p>
+                    <p><strong>Tools Used:</strong> Python, Splunk, REST APIs</p>
+                    <a href="#" class="cta-button">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-subtitle">Professional qualifications and achievements</p>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <img src="/Users/slys/Documents/SlyCyber/content/certifications/Network+.png" 
+                         alt="Network+ Certification" 
+                         class="cert-image">
+                </div>
+                <div class="cert-card">
+                    <img src="/Users/slys/Documents/SlyCyber/content/certifications/Security+.png" 
+                         alt="Security+ Certification" 
+                         class="cert-image">
+                </div>
+                <div class="cert-card">
+                    <img src="/Users/slys/Documents/SlyCyber/content/certifications/Splunk.png" 
+                         alt="Splunk Certification" 
+                         class="cert-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">My journey in cybersecurity</p>
+            <p>With a strong passion for cybersecurity, I specialize in network security analysis, SOC operations, and cloud security. I'm constantly learning and exploring new tools and technologies to strengthen my skills and stay current with industry trends.</p>
+            <div class="skills-grid">
+                <div class="skill-item">Network Security</div>
+                <div class="skill-item">Incident Response</div>
+                <div class="skill-item">Linux</div>
+                <div class="skill-item">Windows</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Splunk</div>
+                <div class="skill-item">Azure Security</div>
+                <div class="skill-item">Wireshark</div>
+            </div>
+            <div class="resume-button-container">
+                <a href="/Users/slys/Documents/SlyCyber/content/Emsly_Resume.pdf" class="cta-button" download>Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="get-in-touch">
+                <h2>Get in Touch</h2>
+                <p>If you have any questions or would like to connect, feel free to reach out to me on LinkedIn!</p>
+                <a href="https://www.linkedin.com/in/emsly-severe-482794196/" target="_blank" class="linkedin-button">
+                    Connect with me on LinkedIn
+                </a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/emsly-severe-482794196/" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://github.com/yourprofile" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a><a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SlyCyber. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Theme Switcher
+        const themeSwitch = document.createElement('button');
+        themeSwitch.className = 'theme-switch';
+        themeSwitch.innerHTML = '<i class="fas fa-moon"></i>';
+        document.body.appendChild(themeSwitch);
+
+        themeSwitch.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            themeSwitch.innerHTML = document.body.classList.contains('light-theme') ? 
+                '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Form submission handling
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.classList.add('loading');
+
+            try {
+                const formData = new FormData(form);
+                await fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                });
+                alert('Message sent successfully!');
+                form.reset();
+            } catch (error) {
+                alert('Error sending message. Please try again.');
+            } finally {
+                submitButton.classList.remove('loading');
+            }
+        });
+    </script>
+</body>
+</html>
